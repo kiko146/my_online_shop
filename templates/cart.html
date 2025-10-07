@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="text-center text-primary mb-4">Your Cart</h2>
+
+  {% if cart %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart %}
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>${{ item.price }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h4 class="text-end">Total: ${{ total }}</h4>
+    <div class="d-flex justify-content-between mt-3">
+      <a href="{{ url_for('show_products') }}" class="btn btn-secondary">Continue Shopping</a>
+      <a href="{{ url_for('clear_cart') }}" class="btn btn-danger">Clear Cart</a>
+    </div>
+  {% else %}
+    <p class="text-center">Your cart is empty. <a href="{{ url_for('show_products') }}">Browse products</a></p>
+  {% endif %}
+</div>
+{% endblock %}

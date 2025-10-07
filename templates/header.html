@@ -1,0 +1,27 @@
+<div class="container">
+  <header class="d-flex flex-wrap justify-content-between align-items-center py-3 mb-4 border-bottom site-header">
+    <a href="{{ url_for('home') }}" class="d-flex align-items-center mb-3 mb-md-0 text-decoration-none">
+      <img src="{{ url_for('static', filename='images/shop.png') }}" alt="Logo" width="40" height="32" class="me-2">
+      <span class="fs-4 fw-bold">ONLINE SHOP</span>
+    </a>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link {% if title=='Home' %}active{% endif %}">Home</a></li>
+      <li class="nav-item"><a href="{{ url_for('show_products') }}" class="nav-link {% if title=='Products' %}active{% endif %}">Products</a>
+      <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link {% if title=='About' %}active{% endif %}">About</a></li>
+      <li class="nav-item"><a href="{{ url_for('cart') }}" class="nav-link {% if title=='Cart' %}active{% endif %}">Cart 🛒</a></li>
+
+      {% if session.get('username') %}
+        <li class="nav-item"><a href="#" class="nav-link disabled">Hello, {{ session['username'] }}</a></li>
+        <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+      {% else %}
+        <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link {% if title=='Login' %}active{% endif %}">Login</a></li>
+        <li class="nav-item"><a href="{{ url_for('signup') }}" class="nav-link {% if title=='Signup' %}active{% endif %}">Sign Up</a></li>
+      {% endif %}
+
+    </ul>
+
+
+
+  </header>
+</div>
